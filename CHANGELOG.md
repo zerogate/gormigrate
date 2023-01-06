@@ -1,6 +1,14 @@
 # Changelog
 
-## 2.0.0 - 2020-09-05
+## v2.0.2 - 2022-05-29
+
+- Upgrade dependencies
+
+## v2.0.1 - 2022-05-15
+
+- Upgrade dependencies
+
+## v2.0.0 - 2020-09-05
 
 - Make it compatible with Gorm v2, which uses a new import path and has
   breaking changes on its API
