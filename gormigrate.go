@@ -376,6 +376,11 @@ func (g *Gormigrate) createMigrationTableIfNotExists() error {
 	if g.tx.Migrator().HasTable(g.options.TableName) {
 		return nil
 	}
+	
+	if g.tx.Config.Name() == "clickhouse" {
+		sql := fmt.Sprintf("CREATE TABLE %s (`%s` String) ENGINE = MergeTree()", g.options.TableName, g.options.IDColumnName)
+		return g.tx.Exec(sql).Error
+	}
 
 	sql := fmt.Sprintf("CREATE TABLE %s (%s VARCHAR(%d) PRIMARY KEY)", g.options.TableName, g.options.IDColumnName, g.options.IDColumnSize)
 	return g.tx.Exec(sql).Error
